@@ -1,0 +1,38 @@
+[
+  {
+    "model": "qwen3.5:397b-cloud",
+    "prompt": "Write a Python function to check if a domain is av",
+    "tokens_generated": 59,
+    "time_to_first_token": 4.50913667678833,
+    "total_time": 7.231130361557007,
+    "tokens_per_second": 8.15916696975383,
+    "ram_usage_mb": 2426.5625,
+    "cpu_temp": 46.85,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "qwen3.5:397b-cloud",
+    "prompt": "Summarize the key points of: The quick brown fox j",
+    "tokens_generated": 54,
+    "time_to_first_token": 3.9469244480133057,
+    "total_time": 6.595152139663696,
+    "tokens_per_second": 8.187832343584661,
+    "ram_usage_mb": 2410.125,
+    "cpu_temp": 48.5,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "qwen3.5:397b-cloud",
+    "prompt": "List 5 ways to optimize LLM inference on ARM proce",
+    "tokens_generated": 61,
+    "time_to_first_token": 4.219218730926514,
+    "total_time": 7.616299390792847,
+    "tokens_per_second": 8.009138936127087,
+    "ram_usage_mb": 2420.484375,
+    "cpu_temp": 49.6,
+    "success": true,
+    "error": null
+  }
+]

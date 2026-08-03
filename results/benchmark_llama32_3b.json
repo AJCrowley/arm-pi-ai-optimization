@@ -1,0 +1,62 @@
+[
+  {
+    "model": "llama3.2:3b",
+    "prompt": "Write a Python function to check if a domain is av",
+    "tokens_generated": 0,
+    "time_to_first_token": 0,
+    "total_time": 0,
+    "tokens_per_second": 0,
+    "ram_usage_mb": 2441.0,
+    "cpu_temp": 49.6,
+    "success": false,
+    "error": "HTTP 404"
+  },
+  {
+    "model": "llama3.2:3b",
+    "prompt": "Summarize the key points of: The quick brown fox j",
+    "tokens_generated": 0,
+    "time_to_first_token": 0,
+    "total_time": 0,
+    "tokens_per_second": 0,
+    "ram_usage_mb": 2441.0,
+    "cpu_temp": 48.5,
+    "success": false,
+    "error": "HTTP 404"
+  },
+  {
+    "model": "llama3.2:3b",
+    "prompt": "List 5 ways to optimize LLM inference on ARM proce",
+    "tokens_generated": 0,
+    "time_to_first_token": 0,
+    "total_time": 0,
+    "tokens_per_second": 0,
+    "ram_usage_mb": 2441.0,
+    "cpu_temp": 48.5,
+    "success": false,
+    "error": "HTTP 404"
+  },
+  {
+    "model": "llama3.2:3b",
+    "prompt": "Write a bash script to monitor CPU temperature on ",
+    "tokens_generated": 0,
+    "time_to_first_token": 0,
+    "total_time": 0,
+    "tokens_per_second": 0,
+    "ram_usage_mb": 2441.0,
+    "cpu_temp": 48.5,
+    "success": false,
+    "error": "HTTP 404"
+  },
+  {
+    "model": "llama3.2:3b",
+    "prompt": "Explain the difference between TCP and UDP in simp",
+    "tokens_generated": 0,
+    "time_to_first_token": 0,
+    "total_time": 0,
+    "tokens_per_second": 0,
+    "ram_usage_mb": 2441.0,
+    "cpu_temp": 48.5,
+    "success": false,
+    "error": "HTTP 404"
+  }
+]

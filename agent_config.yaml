@@ -1,0 +1,68 @@
+# Pi Arm AI Optimizer — Agent Configuration
+# Optimized for small-model agents on ARM64 Raspberry Pi 5
+
+model:
+  # Primary model for agent tasks
+  name: "llama3.2:3b"
+  # Fallback for complex tasks (sent to cloud)
+  cloud_fallback: "gpt-4o"
+  
+  # Quantization settings (handled by Ollama)
+  # Q4_K_M is the default for Ollama pulls
+  
+  # Inference optimization
+  options:
+    temperature: 0.2        # Low temp for predictable agent behavior
+    top_p: 0.9
+    num_predict: 512        # Cap output length
+    num_ctx: 4096           # Context window (limited by RAM)
+    repeat_penalty: 1.1
+    seed: 42                # Reproducible outputs for benchmarking
+
+context_management:
+  # Aggressive context truncation for small models
+  max_history: 10           # Keep only last 10 messages
+  max_tool_output_lines: 20 # Truncate tool outputs to 20 lines
+  summarize_long_outputs: true
+  summary_max_tokens: 200
+
+task_design:
+  # Atomic task decomposition settings
+  max_retries: 3            # Circuit breaker: stop after 3 failures
+  verify_results: true      # Check system state after each task
+  atomic_steps: true        # One action per step
+  
+  # Task categories and routing
+  local_tasks:              # Tasks that work well on 3B model
+    - "file_operations"
+    - "shell_commands"
+    - "service_management"
+    - "code_execution"
+    - "data_extraction"
+    - "monitoring"
+    
+  cloud_tasks:              # Tasks that need cloud model
+    - "code_review_complex"
+    - "article_writing"
+    - "creative_writing"
+    - "multi_file_reasoning"
+
+thermal_management:
+  # Pi 5 thermal optimization
+  active_cooler: true       # Required for sustained inference
+  throttle_threshold: 80    # °C — Pi 5 throttles at this temp
+  monitoring_interval: 60   # Check temp every 60s
+  
+memory_management:
+  # RAM optimization
+  max_model_ram: 4.5        # GB — leave headroom for OS + agent
+  swap_enabled: true
+  swap_size: 4096           # MB
+  model_cleanup: true       # Remove unused models
+
+performance_targets:
+  # Measured benchmarks on Pi 5 8GB
+  target_tokens_per_sec: 12
+  target_ttft: 0.5          # Time to first token (seconds)
+  target_ram_usage: 4000    # MB during inference
+  target_success_rate: 0.84 # 84% task completion rate

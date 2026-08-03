@@ -1,0 +1,77 @@
+# Task Templates for Small-Model Agents
+# These templates enforce atomic step design for 3B models on ARM64
+
+templates:
+  # File creation task
+  - name: "create_file"
+    description: "Create a file with specific content"
+    steps:
+      - action: "write_file"
+        args: ["path", "content"]
+        verify: "file_exists(path)"
+      - action: "read_file"
+        args: ["path"]
+        verify: "content_matches(expected)"
+    
+  # Service deployment task
+  - name: "deploy_service"
+    description: "Deploy a systemd service"
+    steps:
+      - action: "write_service_file"
+        verify: "file_exists('/etc/systemd/system/{name}.service')"
+      - action: "systemctl_daemon_reload"
+        verify: "command_success('systemctl daemon-reload')"
+      - action: "enable_service"
+        verify: "command_success('systemctl enable {name}')"
+      - action: "start_service"
+        verify: "service_active('{name}')"
+      - action: "check_status"
+        verify: "service_active('{name}')"
+    
+  # Web scraping task
+  - name: "web_scrape"
+    description: "Extract data from a web page"
+    steps:
+      - action: "navigate"
+        args: ["url"]
+        verify: "page_loaded()"
+      - action: "extract_data"
+        args: ["selector"]
+        verify: "data_not_empty()"
+      - action: "save_json"
+        args: ["data", "output_path"]
+        verify: "file_exists(output_path)"
+    
+  # Email management task
+  - name: "email_triage"
+    description: "Triage and respond to emails"
+    steps:
+      - action: "fetch_emails"
+        verify: "emails_received()"
+      - action: "classify"
+        args: ["emails"]
+        verify: "all_classified()"
+      - action: "draft_responses"
+        args: ["important_emails"]
+        verify: "responses_drafted()"
+      - action: "send_for_review"
+        verify: "review_queue_updated()"
+    
+  # Code deployment task
+  - name: "deploy_code"
+    description: "Build and deploy code to a server"
+    steps:
+      - action: "build"
+        verify: "build_success()"
+      - action: "rsync"
+        args: ["local_path", "remote_path"]
+        verify: "files_transferred()"
+      - action: "restart_service"
+        verify: "service_active('app')"
+      - action: "health_check"
+        verify: "endpoint_responds(url)"
+
+circuit_breaker:
+  max_retries: 3
+  backoff_seconds: [1, 2, 5]
+  on_failure: "report_and_stop"

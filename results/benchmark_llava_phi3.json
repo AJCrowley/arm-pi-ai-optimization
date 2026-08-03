@@ -1,0 +1,38 @@
+[
+  {
+    "model": "llava-phi3:latest",
+    "prompt": "Write a Python function to check if a domain is av",
+    "tokens_generated": 181,
+    "time_to_first_token": 15.596177101135254,
+    "total_time": 60.62469530105591,
+    "tokens_per_second": 2.985582015730931,
+    "ram_usage_mb": 6560.625,
+    "cpu_temp": 63.35,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "llava-phi3:latest",
+    "prompt": "Summarize the key points of: The quick brown fox j",
+    "tokens_generated": 99,
+    "time_to_first_token": 1.3467745780944824,
+    "total_time": 26.818960428237915,
+    "tokens_per_second": 3.6914182510878404,
+    "ram_usage_mb": 6663.46875,
+    "cpu_temp": 65.0,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "llava-phi3:latest",
+    "prompt": "List 5 ways to optimize LLM inference on ARM proce",
+    "tokens_generated": 200,
+    "time_to_first_token": 1.075063705444336,
+    "total_time": 52.66302013397217,
+    "tokens_per_second": 3.79773130160803,
+    "ram_usage_mb": 6692.328125,
+    "cpu_temp": 67.75,
+    "success": true,
+    "error": null
+  }
+]
