@@ -1,0 +1,62 @@
+[
+  {
+    "model": "llama3.2:1b",
+    "prompt": "Write a Python function to check if a domain is av",
+    "tokens_generated": 200,
+    "time_to_first_token": 7.105831861495972,
+    "total_time": 35.029197216033936,
+    "tokens_per_second": 5.70952279512857,
+    "ram_usage_mb": 3922.546875,
+    "cpu_temp": 65.0,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "llama3.2:1b",
+    "prompt": "Summarize the key points of: The quick brown fox j",
+    "tokens_generated": 141,
+    "time_to_first_token": 1.1331140995025635,
+    "total_time": 21.006203174591064,
+    "tokens_per_second": 6.712302972036016,
+    "ram_usage_mb": 3809.96875,
+    "cpu_temp": 68.85,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "llama3.2:1b",
+    "prompt": "List 5 ways to optimize LLM inference on ARM proce",
+    "tokens_generated": 200,
+    "time_to_first_token": 1.0055007934570312,
+    "total_time": 29.326210737228394,
+    "tokens_per_second": 6.819837782387221,
+    "ram_usage_mb": 3820.078125,
+    "cpu_temp": 67.75,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "llama3.2:1b",
+    "prompt": "Write a bash script to monitor CPU temperature on ",
+    "tokens_generated": 200,
+    "time_to_first_token": 1.0274739265441895,
+    "total_time": 30.065083503723145,
+    "tokens_per_second": 6.652234974675283,
+    "ram_usage_mb": 3817.296875,
+    "cpu_temp": 68.85,
+    "success": true,
+    "error": null
+  },
+  {
+    "model": "llama3.2:1b",
+    "prompt": "Explain the difference between TCP and UDP in simp",
+    "tokens_generated": 169,
+    "time_to_first_token": 0.9631330966949463,
+    "total_time": 25.10939383506775,
+    "tokens_per_second": 6.73054877828133,
+    "ram_usage_mb": 3818.8125,
+    "cpu_temp": 69.4,
+    "success": true,
+    "error": null
+  }
+]
