@@ -1,16 +1,19 @@
 # Pi Arm AI Optimizer: Running Production AI Agents on ARM64 with Ollama
 
-> Submitted to the **Arm Create: AI Optimization Challenge** — Physical AI track
+> Submitted to the **Arm Create: AI Optimization Challenge** — Physical AI track (edge devices, embedded, autonomy)
 
-## Overview
+## Project Overview
 
 This project demonstrates real-world AI optimization on ARM-powered platforms by running a **production AI agent** entirely on a **Raspberry Pi 5 (ARM64, 8GB RAM)**. The agent manages email, writes and deploys code, monitors services, and submits content — all using locally-quantized LLMs via Ollama.
 
-The optimization work focuses on making small (3B and below) language models viable for agentic workloads on ARM64 hardware with severe memory constraints.
+The optimization work focuses on making small (3B and below) language models viable for agentic workloads on ARM64 hardware with severe memory constraints. This is the most constrained ARM platform that can still run useful AI workloads — a $80 Raspberry Pi 5. If you can make a 3B model do production agent work on a Pi 5, those same optimizations apply to every ARM device in the ecosystem.
 
-## What Makes This Interesting
+### Why This Should Win
 
-Most AI optimization work targets cloud-scale ARM servers. This project targets the **most constrained ARM platform** that can still run useful AI: a $80 Raspberry Pi. If you can make a 3B model do production agent work on a Pi 5, those same optimizations apply to every ARM device in the ecosystem.
+- **Real production usage**: This isn't a benchmark demo — it's a live AI agent that has been running 24/7 for 3+ months, performing real tasks (email management, code deployment, content submission, service monitoring)
+- **Measurable optimizations**: Detailed benchmarks across 5 models with real tokens/sec, RAM usage, thermal metrics, and task success rates
+- **Reusable patterns**: The task decomposition and context management strategies are applicable to any ARM edge AI deployment
+- **Extreme constraint optimization**: Optimizing for 8GB RAM total (including OS) is harder than optimizing for cloud instances with 64GB+
 
 ## Key Optimizations
 
@@ -98,6 +101,75 @@ python3 benchmark.py --model llama3.2:3b --iterations 100
 | Tokens/sec | 40-60 | 12-15 |
 | Privacy | Data sent to cloud | Nothing leaves network |
 | Setup time | 5 minutes | One afternoon |
+
+## Functionality / Output
+
+This project produces:
+
+1. **A production AI agent** running on the Pi 5 that performs real-world tasks:
+   - Email management (reading, composing, sending via SMTP)
+   - Code generation and deployment (writes Python/JS, deploys to local services)
+   - Content creation and submission (articles published to Dev.to via API)
+   - Service monitoring (checks health of web services, restarts if needed)
+   - Domain availability checking (RDAP queries across 500+ TLDs)
+
+2. **Benchmark data** comparing 5 models on ARM64 with real metrics:
+   - Tokens/sec, time to first token (TTFT), RAM usage, CPU temperature, task success rate
+   - Raw JSON results in `/results/` directory
+
+3. **Reusable optimization patterns** for small-model agentic workloads:
+   - `agent_config.yaml` — Production agent configuration
+   - `task_templates/` — Pre-structured task templates for common agent operations
+   - `docs/` — Detailed optimization documentation
+
+## Setup Instructions
+
+### Step 1: Hardware Setup
+- Raspberry Pi 5 (8GB RAM version recommended)
+- NVMe SSD (via Pimoroni NVMe Base or PCIe HAT) — required for model storage
+- Active cooler (official Pi 5 cooler) — required to prevent thermal throttling
+- Ubuntu 24.04 LTS or Raspberry Pi OS 64-bit
+
+### Step 2: Install Ollama
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+### Step 3: Pull Optimized Model
+```bash
+# The 1B model is fastest for interactive tasks
+ollama pull llama3.2:1b
+
+# The 3B model provides better quality output
+ollama pull llama3.2:3b
+```
+
+### Step 4: Configure for Headless Operation
+```bash
+# Enable network access
+sudo systemctl edit ollama
+# Add: Environment="OLLAMA_HOST=0.0.0.0:11434"
+sudo systemctl restart ollama
+```
+
+### Step 5: Run Benchmarks
+```bash
+cd arm-pi-ai-optimization
+python3 benchmark.py --model llama3.2:3b --iterations 100
+```
+
+### Step 6: Validate on Arm
+```bash
+# Verify you're running on ARM64
+uname -m  # should output: aarch64
+
+# Check model is running
+ollama list
+ollama ps
+
+# Run a test prompt
+ollama run llama3.2:3b "Write a Python function to check if a domain is available"
+```
 
 ## License
 
